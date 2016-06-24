@@ -1395,7 +1395,11 @@ defmodule String do
   defdelegate length(string), to: String.Unicode
 
   @doc """
-  Returns `true` if `string` is longer than `limit`.
+  Checks if a utf8 string has more than `limit` number of Unicode graphemes.
+
+  This function is more efficient than using `String.length/1`
+  when the input string is longer than the limit, since it only has
+  to traverse the string until it reaches `limit` graphemes.
 
   ## Examples
 
@@ -1406,7 +1410,7 @@ defmodule String do
       true
 
   """
-  @spec longer?(t, t) :: boolean
+  @spec longer?(t, non_neg_integer) :: boolean
   defdelegate longer?(string, limit), to: String.Unicode
 
   @doc """
