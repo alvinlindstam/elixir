@@ -470,6 +470,26 @@ defmodule StringTest do
     assert String.length("") == 0
   end
 
+  test "longer?" do
+    refute String.longer?("elixir", 6)
+    assert String.longer?("elixir", 6-1)
+    refute String.longer?("elixrí", 6)
+    assert String.longer?("elixrí", 6-1)
+    refute String.longer?("եոգլից", 6)
+    assert String.longer?("եոգլից", 6-1)
+    refute String.longer?("ліксрэ", 6)
+    assert String.longer?("ліксрэ", 6-1)
+    refute String.longer?("ειξήριολ", 8)
+    assert String.longer?("ειξήριολ", 8-1)
+    refute String.longer?("סם ייםח", 7)
+    assert String.longer?("סם ייםח", 7-1)
+    refute String.longer?("がガちゃ", 4)
+    assert String.longer?("がガちゃ", 4-1)
+    refute String.longer?("Ā̀stute", 6)
+    assert String.longer?("Ā̀stute", 6-1)
+    refute String.longer?("", 0)
+  end
+
   test "at" do
     assert String.at("л", 0) == "л"
     assert String.at("elixir", 1) == "l"

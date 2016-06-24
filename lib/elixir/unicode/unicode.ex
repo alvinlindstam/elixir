@@ -191,6 +191,10 @@ defmodule String.Unicode do
 
   defp do_length(nil, acc), do: acc
 
+  def longer?(string, limit) do
+    String.Unicode.length(string) > limit
+  end
+
   # Split at
 
   def split_at(string, pos) do

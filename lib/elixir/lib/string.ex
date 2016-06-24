@@ -1395,6 +1395,21 @@ defmodule String do
   defdelegate length(string), to: String.Unicode
 
   @doc """
+  Returns `true` if `string` is longer than `limit`.
+
+  ## Examples
+
+      iex> String.longer?("elixir", 6)
+      false
+
+      iex> String.longer?("elixir", 5)
+      true
+
+  """
+  @spec longer?(t, t) :: boolean
+  defdelegate longer?(string, limit), to: String.Unicode
+
+  @doc """
   Returns the grapheme at the `position` of the given utf8 `string`.
   If `position` is greater than `string` length, then it returns `nil`.
 
