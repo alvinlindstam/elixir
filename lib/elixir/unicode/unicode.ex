@@ -191,9 +191,20 @@ defmodule String.Unicode do
 
   defp do_length(nil, acc), do: acc
 
-  def longer?(string, limit) do
-    String.Unicode.length(string) > limit
+
+  # Longer?
+
+  def longer?(string, limit) when limit >= 0 do
+    do_longer?(next_grapheme_size(string), limit)
   end
+
+  defp do_longer?({_, _rest}, 0), do: true
+
+  defp do_longer?({_, rest}, limit) do
+    do_longer?(next_grapheme_size(rest), limit - 1)
+  end
+
+  defp do_longer?(nil, _limit), do: false
 
   # Split at
 

@@ -471,22 +471,24 @@ defmodule StringTest do
   end
 
   test "longer?" do
+    refute String.longer?("elixir", 10)
     refute String.longer?("elixir", 6)
-    assert String.longer?("elixir", 6-1)
+    assert String.longer?("elixir", 5)
+    assert String.longer?("elixir", 0)
     refute String.longer?("elixrí", 6)
-    assert String.longer?("elixrí", 6-1)
+    assert String.longer?("elixrí", 5)
     refute String.longer?("եոգլից", 6)
-    assert String.longer?("եոգլից", 6-1)
+    assert String.longer?("եոգլից", 5)
     refute String.longer?("ліксрэ", 6)
-    assert String.longer?("ліксрэ", 6-1)
+    assert String.longer?("ліксрэ", 5)
     refute String.longer?("ειξήριολ", 8)
-    assert String.longer?("ειξήριολ", 8-1)
+    assert String.longer?("ειξήριολ", 7)
     refute String.longer?("סם ייםח", 7)
-    assert String.longer?("סם ייםח", 7-1)
+    assert String.longer?("סם ייםח", 6)
     refute String.longer?("がガちゃ", 4)
-    assert String.longer?("がガちゃ", 4-1)
+    assert String.longer?("がガちゃ", 3)
     refute String.longer?("Ā̀stute", 6)
-    assert String.longer?("Ā̀stute", 6-1)
+    assert String.longer?("Ā̀stute", 5)
     refute String.longer?("", 0)
   end
 
